@@ -7,15 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Blood-Bank-API\BloodBank.API.csproj" />
     <ProjectReference Include="..\BloodBank.Domain\BloodBank.Domain.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Commands\DonationCommands\" />
-    <Folder Include="Commands\DonnorCommands\" />
-    <Folder Include="Commands\BloodStockCommand\" />
-    <Folder Include="Queries\" />
+    <Folder Include="Commands\BloodStockCommands\" />
+    <Folder Include="Queries\DonorQueries\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="13.1.0" />
   </ItemGroup>
 
 </Project>

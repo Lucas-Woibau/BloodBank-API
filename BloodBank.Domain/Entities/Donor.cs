@@ -1,10 +1,12 @@
 ﻿using BloodBank.Domain.Enums;
+using BloodBank.Domain.ValueObjects;
+using System.Net;
 
 namespace BloodBank.Domain.Entities
 {
     public class Donor : BaseEntity
     {
-        public Donor(string name, string email, DateTime birthDate, string gender, double weight, BloodType bloodType, RhFactor rhFactor)
+        public Donor(string name, string email, DateTime birthDate, string gender, double weight, BloodType bloodType, RhFactor rhFactor, Address address, List<Donation>? donations)
             : base()
         {
             Name = name;
@@ -15,7 +17,8 @@ namespace BloodBank.Domain.Entities
             BloodType = bloodType;
             RhFactor = rhFactor;
 
-            Donations = new List<Donation>();
+            Address = address ?? throw new ArgumentNullException(nameof(address));
+            Donations = donations ?? new List<Donation>();
         }
 
         public string Name { get; private set; }
@@ -28,7 +31,7 @@ namespace BloodBank.Domain.Entities
         public Address Address { get; private set; }
         public List<Donation> Donations { get; private set; }
 
-        public void Update(string name, string email, DateTime birthDate, string gender, double weight, BloodType bloodType, RhFactor rhFactor)
+        public void Update(string name, string email, DateTime birthDate, string gender, double weight, BloodType bloodType, RhFactor rhFactor, Address address, List<Donation>? donations)
         {
             Name = name;
             Email = email;
@@ -37,6 +40,8 @@ namespace BloodBank.Domain.Entities
             Weight = weight;
             BloodType = bloodType;
             RhFactor = rhFactor;
+            Address = address;
+            Donations = donations;
         }
     }
 }

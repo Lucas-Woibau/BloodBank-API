@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace BloodBank_API.Controllers
 {
@@ -6,6 +7,5 @@ namespace BloodBank_API.Controllers
     [ApiController]
     public class DonorController : ControllerBase
     {
-          
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BloodBank.Domain.Entities;
 using BloodBank.Domain.Enums;
+using BloodBank.Domain.ValueObjects;
 
 namespace BloodBank.Application.Models
 {

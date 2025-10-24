@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36511.14 d17.14
+VisualStudioVersion = 17.14.36511.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodBank.API", "Blood-Bank-API\BloodBank.API.csproj", "{CD68A2D8-E1C4-4A1D-A8AD-BB48EE29FDDD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{37953786-9D93-41F9-890A-BEBABC7CAEB0} = {37953786-9D93-41F9-890A-BEBABC7CAEB0}
+		{97256626-CB86-444C-9910-3C34E3817D98} = {97256626-CB86-444C-9910-3C34E3817D98}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodBank.Domain", "BloodBank.Domain\BloodBank.Domain.csproj", "{37953786-9D93-41F9-890A-BEBABC7CAEB0}"
 EndProject
