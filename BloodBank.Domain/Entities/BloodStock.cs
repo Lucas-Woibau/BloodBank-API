@@ -4,6 +4,7 @@ namespace BloodBank.Domain.Entities
 {
     public class BloodStock : BaseEntity
     {
+        protected BloodStock() { }
         public BloodStock(BloodType bloodType, RhFactor rhFactor, int quantityMl)
             : base()
         {

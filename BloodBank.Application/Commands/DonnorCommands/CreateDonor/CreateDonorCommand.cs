@@ -3,6 +3,7 @@ using BloodBank.Domain.Entities;
 using BloodBank.Domain.Enums;
 using BloodBank.Domain.ValueObjects;
 using MediatR;
+using System.Text.Json.Serialization;
 
 namespace BloodBank.Application.Commands.DonnorCommands.CreateDonor
 {
@@ -16,9 +17,8 @@ namespace BloodBank.Application.Commands.DonnorCommands.CreateDonor
         public BloodType BloodType { get; set; }
         public RhFactor RhFactor { get; private set; }
         public Address Address { get; set; }
-        public List<Donation> Donations { get; set; }
 
         public Donor ToEntity() =>
-            new(Name, Email, BirthDate, Gender, Weight, BloodType, RhFactor, Address, Donations);
+            new(Name, Email, BirthDate, Gender, Weight, BloodType, RhFactor, Address);
     }
 }

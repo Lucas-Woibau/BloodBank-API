@@ -21,7 +21,7 @@ namespace BloodBank.Application.Commands.DonnorCommands.UpdateDonor
 
             donor.Update
                 (request.Name, request.Email, request.BirthDate, request.Gender,
-                request.Weight, request.BloodType, request.RhFactor, request.Address, request.Donations);
+                request.Weight, request.BloodType, request.RhFactor, request.Address);
 
             await _repository.Update(donor);
 

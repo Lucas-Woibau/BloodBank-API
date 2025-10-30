@@ -13,7 +13,7 @@ namespace BloodBank.Infrastructure
             IConfiguration configuration)
         {
             services
-                .AddHandlers()
+                .AddRepositories()
                 .AddData(configuration);
 
             return services;
@@ -25,14 +25,6 @@ namespace BloodBank.Infrastructure
 
             services.AddDbContext<BloodBankDbContext>(options =>
                 options.UseSqlServer(connectionString));
-
-            return services;
-        }
-
-        public static IServiceCollection AddHandlers(this IServiceCollection services)
-        {
-            services.AddMediatR(config
-                => config.RegisterServicesFromAssemblyContaining<CreateDonorCommand>());
 
             return services;
         }

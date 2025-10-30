@@ -20,9 +20,11 @@ namespace BloodBank.Infrastructure.Persistence.Repositories
             return donors;
         }
 
-        public async Task<Donor> GetById(int id)
+        public async Task<Donor?> GetById(int id)
         {
             var donor = await _context.Donors
+                .Include(d => d.Address)
+                .Include(d => d.Donations)
                 .FirstOrDefaultAsync(d => d.Id == id);
 
             return donor;

@@ -13,7 +13,6 @@
   <ItemGroup>
     <Folder Include="Commands\DonationCommands\" />
     <Folder Include="Commands\BloodStockCommands\" />
-    <Folder Include="Queries\DonorQueries\" />
   </ItemGroup>
 
   <ItemGroup>

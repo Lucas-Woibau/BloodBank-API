@@ -6,7 +6,8 @@ namespace BloodBank.Domain.Entities
 {
     public class Donor : BaseEntity
     {
-        public Donor(string name, string email, DateTime birthDate, string gender, double weight, BloodType bloodType, RhFactor rhFactor, Address address, List<Donation>? donations)
+        protected Donor() { }
+        public Donor(string name, string email, DateTime birthDate, string gender, double weight, BloodType bloodType, RhFactor rhFactor, Address address)
             : base()
         {
             Name = name;
@@ -17,8 +18,8 @@ namespace BloodBank.Domain.Entities
             BloodType = bloodType;
             RhFactor = rhFactor;
 
-            Address = address ?? throw new ArgumentNullException(nameof(address));
-            Donations = donations ?? new List<Donation>();
+            Address = address;
+            Donations = new List<Donation>();
         }
 
         public string Name { get; private set; }
@@ -31,7 +32,7 @@ namespace BloodBank.Domain.Entities
         public Address Address { get; private set; }
         public List<Donation> Donations { get; private set; }
 
-        public void Update(string name, string email, DateTime birthDate, string gender, double weight, BloodType bloodType, RhFactor rhFactor, Address address, List<Donation>? donations)
+        public void Update(string name, string email, DateTime birthDate, string gender, double weight, BloodType bloodType, RhFactor rhFactor, Address address)
         {
             Name = name;
             Email = email;
@@ -41,7 +42,6 @@ namespace BloodBank.Domain.Entities
             BloodType = bloodType;
             RhFactor = rhFactor;
             Address = address;
-            Donations = donations;
         }
     }
 }
