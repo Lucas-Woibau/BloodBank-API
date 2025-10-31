@@ -25,7 +25,7 @@ namespace BloodBank.Infrastructure.Persistence.Repositories
             var donor = await _context.Donors
                 .Include(d => d.Address)
                 .Include(d => d.Donations)
-                .FirstOrDefaultAsync(d => d.Id == id);
+                .SingleOrDefaultAsync(d => d.Id == id);
 
             return donor;
         }
@@ -46,9 +46,9 @@ namespace BloodBank.Infrastructure.Persistence.Repositories
 
         public async Task Delete(int id)
         {
-            var donor = _context.Donors.FirstOrDefault(d => d.Id == id);
+            var donor = await _context.Donors.SingleOrDefaultAsync(d => d.Id == id);
 
-            if (donor != null)
+            if (donor == null)
                 return;
 
             _context.Donors.Remove(donor);

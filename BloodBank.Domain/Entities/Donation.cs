@@ -3,9 +3,10 @@
     public class Donation : BaseEntity
     {
         protected Donation() { }
-        public Donation(DateTime donationDate, int quantityMl)
+        public Donation(int idDonor, DateTime donationDate, int quantityMl)
             : base()
         {
+            IdDonor = idDonor;
             DonationDate = donationDate;
             QuantityMl = quantityMl;
         }
@@ -15,5 +16,11 @@
         public int QuantityMl { get; private set; }
 
         public Donor Donor { get; private set; }
+
+        public void Update(DateTime donationDate, int quantityMl)
+        {
+            DonationDate = donationDate;
+            QuantityMl = quantityMl;
+        }
     }
 }

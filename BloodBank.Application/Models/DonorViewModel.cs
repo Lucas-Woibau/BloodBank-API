@@ -6,6 +6,11 @@ namespace BloodBank.Application.Models
 {
     public class DonorViewModel
     {
+        public DonorViewModel(string name, BloodType bloodType)
+        {
+            Name = name;
+            BloodType = bloodType;
+        }
         public DonorViewModel(string name, string email, DateTime birthDate, string gender, double weight, BloodType bloodType, RhFactor rhFactor, Address address, List<Donation> donations)
         {
             Name = name;

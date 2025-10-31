@@ -26,7 +26,6 @@ namespace BloodBank.Application.Commands.DonnorCommands.UpdateDonor
             await _repository.Update(donor);
 
             return ResultViewModel.Success();
-
         }
     }
 }

@@ -18,9 +18,7 @@ namespace BloodBank.Application.Models
         public BloodType BloodType { get; private set; }
         public RhFactor RhFactor { get; private set; }
 
-        public static DonorItemViewModel FromEntity(Donor donor)
-        {
-            return new DonorItemViewModel(donor.Name, donor.Email, donor.BloodType, donor.RhFactor);
-        }
+        public static DonorItemViewModel FromEntity(Donor entity)
+            => new (entity.Name, entity.Email, entity.BloodType, entity.RhFactor);       
     }
 }
