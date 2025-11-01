@@ -11,11 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\BloodStockCommands\" />
-    <Folder Include="Queries\BloodStockQueries\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="MediatR" Version="13.1.0" />
   </ItemGroup>
 

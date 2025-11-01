@@ -17,7 +17,7 @@ namespace BloodBank.Application.Commands.DonnorCommands.UpdateDonor
             var donor = await _repository.GetById(request.IdDonor);
 
             if (donor == null)
-                return ResultViewModel.Error("Donor not found!");
+                return ResultViewModel.Error("Donor not found.");
 
             donor.Update
                 (request.Name, request.Email, request.BirthDate, request.Gender,

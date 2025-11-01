@@ -20,7 +20,7 @@ namespace BloodBank_API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAllDonors()
+        public async Task<IActionResult> GetAll()
         {
             var query = new GetAllDonorsQuery();
 
