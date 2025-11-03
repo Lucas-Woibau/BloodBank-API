@@ -1,11 +1,14 @@
 using BloodBank.Application;
 using BloodBank.Infrastructure;
+using BloodBank_API.ExceptionHandler;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services
     .AddApplicationModule()
     .AddInfrastructure(builder.Configuration);
+
+builder.Services.AddExceptionHandler<ApiExceptionHandler>();
 
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();

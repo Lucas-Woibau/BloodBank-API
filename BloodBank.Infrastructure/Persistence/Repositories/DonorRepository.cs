@@ -1,6 +1,7 @@
 ﻿using BloodBank.Domain.Entities;
 using BloodBank.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Drawing;
 
 namespace BloodBank.Infrastructure.Persistence.Repositories
 {
@@ -53,6 +54,17 @@ namespace BloodBank.Infrastructure.Persistence.Repositories
 
             _context.Donors.Remove(donor);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<DateTime?> GetLastDonationDate(int donorId)
+        {
+            var donation = await _context.Donations
+                .Where(d => d.IdDonor == donorId)
+                .OrderByDescending(d => d.DonationDate)
+                .FirstOrDefaultAsync();
+
+            return donation?.DonationDate;
+
         }
     }
 }

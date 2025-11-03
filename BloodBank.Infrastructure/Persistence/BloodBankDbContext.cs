@@ -1,7 +1,7 @@
 ﻿using BloodBank.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace BloodBank.Infrastructure
+namespace BloodBank.Infrastructure.Persistence
 {
     public class BloodBankDbContext : DbContext
     {
@@ -18,7 +18,11 @@ namespace BloodBank.Infrastructure
                 {
                     e.HasKey(d => d.Id);
                     e.OwnsOne(d => d.Address);
-                    e.HasMany(d => d.Donations);                   
+                    e.HasMany(d => d.Donations);
+                    e.Property(d => d.BloodType)
+                        .HasConversion<string>();
+                    e.Property(d => d.RhFactor)
+                        .HasConversion<string>();
                 });
 
             builder

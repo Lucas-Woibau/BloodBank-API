@@ -14,7 +14,7 @@ namespace BloodBank.Application.Commands.DonnorCommands.CreateDonor
         public string Gender { get; set; }
         public double Weight { get; set; }
         public BloodType BloodType { get; set; }
-        public RhFactor RhFactor { get; private set; }
+        public RhFactor RhFactor { get; set; }
         public Address Address { get; set; }
 
         public Donor ToEntity() =>

@@ -9,5 +9,6 @@ namespace BloodBank.Domain.Repositories
         Task<int> Add(Donor donor);
         Task Update(Donor donor);
         Task Delete(int id);
+        Task<DateTime?> GetLastDonationDate(int donorId);
     }
 }

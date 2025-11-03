@@ -32,6 +32,25 @@ namespace BloodBank.Domain.Entities
         public Address Address { get; private set; }
         public List<Donation> Donations { get; private set; }
 
+        public bool IsEligibleByAge() => GetAge() >= 18;
+        public bool IsEligibleByWeight() => Weight >= 50;
+
+        public int GetAge()
+        {
+            var today = DateTime.Today;
+            var age = today.Year - BirthDate.Year;
+
+            if (BirthDate.Date > today.AddYears(-age))
+                age--;
+
+            return age;
+        }
+
+        public int GetDonationInterval()
+        {
+            return Gender.ToLower() == "Famale" ? 90 : 60;
+        }
+
         public void Update(string name, string email, DateTime birthDate, string gender, double weight, BloodType bloodType, RhFactor rhFactor, Address address)
         {
             Name = name;
