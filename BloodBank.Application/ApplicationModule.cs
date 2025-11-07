@@ -1,7 +1,8 @@
-﻿using BloodBank.Application.Commands.DonnorCommands.CreateDonor;
+﻿using BloodBank.Application.Commands.BloodStockCommands.CreateBloodStock;
+using BloodBank.Application.Commands.DonnorCommands.CreateDonor;
 using BloodBank.Application.Commands.DonnorCommands.UpdateDonor;
 using BloodBank.Application.Models;
-using BloodBank.Application.Validators;
+using BloodBank.Application.Validators.DonorValidators;
 using FluentValidation;
 using FluentValidation.AspNetCore;
 using MediatR;
@@ -26,7 +27,8 @@ namespace BloodBank.Application
                 .AddMediatR(config => config.RegisterServicesFromAssemblyContaining<CreateDonorCommand>());
             services
                 .AddTransient<IPipelineBehavior<CreateDonorCommand, ResultViewModel<int>>, ValidateCreateDonorCommand>()
-                .AddTransient<IPipelineBehavior<UpdateDonorCommand, ResultViewModel>, ValidateUpdateDonorCommand>();
+                .AddTransient<IPipelineBehavior<UpdateDonorCommand, ResultViewModel>, ValidateUpdateDonorCommand>()
+                .AddTransient<IPipelineBehavior<CreateBloodStockCommand, ResultViewModel<int>>, ValidateCreateBloodStockCommand>();
             return services;
         }
 
