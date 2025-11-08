@@ -10,5 +10,6 @@ namespace BloodBank.Domain.Repositories
         Task Update(Donor donor);
         Task Delete(int id);
         Task<DateTime?> GetLastDonationDate(int donorId);
+        Task<bool> DonorEmailExists(string email, int? id);
     }
 }

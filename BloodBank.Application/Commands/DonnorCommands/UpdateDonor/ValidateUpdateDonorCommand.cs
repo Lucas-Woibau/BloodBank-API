@@ -1,6 +1,6 @@
 ﻿using BloodBank.Application.Commands.DonnorCommands.CreateDonor;
 using BloodBank.Application.Models;
-using BloodBank.Infrastructure.Persistence;
+using BloodBank.Domain.Repositories;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,18 +8,23 @@ namespace BloodBank.Application.Commands.DonnorCommands.UpdateDonor
 {
     public class ValidateUpdateDonorCommand : IPipelineBehavior<UpdateDonorCommand, ResultViewModel>
     {
-        private BloodBankDbContext _context;
-        public ValidateUpdateDonorCommand(BloodBankDbContext context)
+        private readonly IDonorRepository _repository;
+
+        public ValidateUpdateDonorCommand(IDonorRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public async Task<ResultViewModel> Handle(UpdateDonorCommand request, RequestHandlerDelegate<ResultViewModel> next, CancellationToken cancellationToken)
         {
-            var donorEmailExists = 
-                await _context.Donors.AnyAsync(d => d.Email == request.Email && d.Id != request.IdDonor);
+            var donorExists = await _repository.GetById(request.IdDonor);
 
-            if (donorEmailExists)
+            if (donorExists == null)
+                return ResultViewModel.Error("Donor not found.");
+
+            var emailInUse = await _repository.DonorEmailExists(request.Email, request.IdDonor);
+
+            if (emailInUse)
                 return ResultViewModel.Error("This email has already been registered.");
 
             return await next();

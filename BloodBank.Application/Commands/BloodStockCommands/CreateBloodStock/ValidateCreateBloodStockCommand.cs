@@ -1,25 +1,24 @@
 ﻿using BloodBank.Application.Models;
-using BloodBank.Infrastructure.Persistence;
+using BloodBank.Domain.Repositories;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace BloodBank.Application.Commands.BloodStockCommands.CreateBloodStock
 {
     public class ValidateCreateBloodStockCommand : IPipelineBehavior<CreateBloodStockCommand, ResultViewModel<int>>
     {
-        private BloodBankDbContext _context;
-        public ValidateCreateBloodStockCommand(BloodBankDbContext context)
+        private readonly IBloodStockRepository _repository;
+
+        public ValidateCreateBloodStockCommand(IBloodStockRepository repository)
         {
-            _context = context;
+            _repository = repository;
         }
 
         public async Task<ResultViewModel<int>> Handle(CreateBloodStockCommand request, RequestHandlerDelegate<ResultViewModel<int>> next, CancellationToken cancellationToken)
         {
-            var bloodTypeStockExists = 
-                await _context.BloodStock.AnyAsync(b => b.BloodType == request.BloodType);
+            var exists = await _repository.ExistsByBloodType(request.BloodType);
 
-            if (bloodTypeStockExists)
-                return ResultViewModel<int>.Error("This blood stock has already been registered.");
+            if (exists)
+                return ResultViewModel<int>.Error("This blood type already has a registered stock.");
 
             return await next();
         }

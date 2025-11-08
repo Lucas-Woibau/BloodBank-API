@@ -1,4 +1,5 @@
 ﻿using BloodBank.Domain.Entities;
+using BloodBank.Domain.Enums;
 using BloodBank.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System.Drawing;
@@ -53,6 +54,12 @@ namespace BloodBank.Infrastructure.Persistence.Repositories
 
             _context.BloodStock.Remove(bloodStock);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> ExistsByBloodType(BloodType bloodType)
+        {
+            return await _context.BloodStock
+                .AnyAsync(b => b.BloodType == bloodType);
         }
     }
 }

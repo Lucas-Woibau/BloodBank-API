@@ -17,6 +17,9 @@
 
         public Donor Donor { get; private set; }
 
+        public bool HasValidQuantity() 
+            => QuantityMl >= 420 && QuantityMl <= 470;
+
         public void Update(DateTime donationDate, int quantityMl)
         {
             DonationDate = donationDate;

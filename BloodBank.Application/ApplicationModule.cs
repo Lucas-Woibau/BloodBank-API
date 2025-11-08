@@ -1,4 +1,7 @@
 ﻿using BloodBank.Application.Commands.BloodStockCommands.CreateBloodStock;
+using BloodBank.Application.Commands.BloodStockCommands.UpdateBloodStock;
+using BloodBank.Application.Commands.DonationCommands.CreateDonation;
+using BloodBank.Application.Commands.DonationCommands.UpdateDonation;
 using BloodBank.Application.Commands.DonnorCommands.CreateDonor;
 using BloodBank.Application.Commands.DonnorCommands.UpdateDonor;
 using BloodBank.Application.Models;
@@ -28,7 +31,13 @@ namespace BloodBank.Application
             services
                 .AddTransient<IPipelineBehavior<CreateDonorCommand, ResultViewModel<int>>, ValidateCreateDonorCommand>()
                 .AddTransient<IPipelineBehavior<UpdateDonorCommand, ResultViewModel>, ValidateUpdateDonorCommand>()
-                .AddTransient<IPipelineBehavior<CreateBloodStockCommand, ResultViewModel<int>>, ValidateCreateBloodStockCommand>();
+
+                .AddTransient<IPipelineBehavior<CreateBloodStockCommand, ResultViewModel<int>>, ValidateCreateBloodStockCommand>()
+                .AddTransient<IPipelineBehavior<UpdateBloodStockCommand, ResultViewModel>, ValidateUpdateBloodStockCommand>()
+
+
+                .AddTransient<IPipelineBehavior<CreateDonationCommand, ResultViewModel<int>>, ValidateCreateDonationCommand>()
+                .AddTransient<IPipelineBehavior<UpdateDonationCommand, ResultViewModel>, ValidateUpdateDonationCommand>();
             return services;
         }
 

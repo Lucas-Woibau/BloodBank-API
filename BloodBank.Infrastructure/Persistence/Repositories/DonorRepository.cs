@@ -1,7 +1,6 @@
 ﻿using BloodBank.Domain.Entities;
 using BloodBank.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
-using System.Drawing;
 
 namespace BloodBank.Infrastructure.Persistence.Repositories
 {
@@ -66,5 +65,12 @@ namespace BloodBank.Infrastructure.Persistence.Repositories
             return donation?.DonationDate;
 
         }
+
+        public async Task<bool> DonorEmailExists(string email, int? id)
+        {
+            return await _context.Donors
+                .AnyAsync(e => e.Email == email && e.Id != (id ?? 0));
+        }
+
     }
 }
