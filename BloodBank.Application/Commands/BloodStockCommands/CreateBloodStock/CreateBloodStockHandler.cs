@@ -17,7 +17,13 @@ namespace BloodBank.Application.Commands.BloodStockCommands.CreateBloodStock
         {
             var bloodStock = request.ToEntity();
 
+
+            if (bloodStock.VerifyBloodStockQuantity())
+                return ResultViewModel<int>.Error("The quantity cannot be negative.");
+
             var id = await _repository.Add(bloodStock);
+
+            await _repository.Update(bloodStock);
 
             return ResultViewModel<int>.Success(id);
         }

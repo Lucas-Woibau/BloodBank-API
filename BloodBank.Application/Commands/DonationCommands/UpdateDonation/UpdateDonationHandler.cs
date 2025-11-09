@@ -6,22 +6,24 @@ namespace BloodBank.Application.Commands.DonationCommands.UpdateDonation
 {
     public class UpdateDonationHandler : IRequestHandler<UpdateDonationCommand, ResultViewModel>
     {
-        private readonly IDonationRepository _repository;
-        public UpdateDonationHandler(IDonationRepository repository)
+        private readonly IDonationRepository _donationRepository;
+        private readonly IBloodStockRepository _bloodStockRepository;
+        public UpdateDonationHandler(IDonationRepository repository, IBloodStockRepository bloodStockRepository)
         {
-            _repository = repository;
+            _donationRepository = repository;
+            _bloodStockRepository = bloodStockRepository;
         }
 
         public async Task<ResultViewModel> Handle(UpdateDonationCommand request, CancellationToken cancellationToken)
         {
-            var donation = await _repository.GetById(request.IdDonation);
+            var donation = await _donationRepository.GetById(request.IdDonation);
 
             if (donation == null)
                 return ResultViewModel.Error("Donation not found.");
 
             donation.Update(request.DonationDate, request.QuantityMl);
             
-            await _repository.Update(donation);
+            await _donationRepository.Update(donation);
 
             return ResultViewModel.Success();
         }

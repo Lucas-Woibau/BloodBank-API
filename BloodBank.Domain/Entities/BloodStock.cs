@@ -17,6 +17,17 @@ namespace BloodBank.Domain.Entities
         public RhFactor RhFactor { get; private set; }
         public int QuantityMl { get; private set; }
 
+        public bool AddDonation(int quantity)
+        {
+            if (quantity <= 0)
+                return false;
+
+            QuantityMl += quantity;
+            return true;
+        }
+
+        public bool VerifyBloodStockQuantity() => QuantityMl <= 0;
+
         public void Update(BloodType bloodType, RhFactor rhFactor, int quantityMl)
         {
             BloodType = bloodType;

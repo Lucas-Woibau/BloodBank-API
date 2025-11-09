@@ -31,6 +31,15 @@ namespace BloodBank.Infrastructure.Persistence.Repositories
             return bloodStock;
         }
 
+        public async Task<BloodStock?> GetByBloodTypeAndRhFactor(BloodType bloodType, RhFactor rhFactor)
+        {
+            var result = await _context.BloodStock
+                .Where(b => b.BloodType == bloodType && b.RhFactor == rhFactor)
+                .SingleOrDefaultAsync();
+
+            return result;
+        }
+
         public async Task<int> Add(BloodStock bloodStock)
         {
             await _context.AddAsync(bloodStock);
@@ -60,6 +69,6 @@ namespace BloodBank.Infrastructure.Persistence.Repositories
         {
             return await _context.BloodStock
                 .AnyAsync(b => b.BloodType == bloodType);
-        }
+        }  
     }
 }

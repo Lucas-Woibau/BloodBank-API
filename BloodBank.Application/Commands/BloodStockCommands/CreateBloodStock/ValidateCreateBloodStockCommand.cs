@@ -18,7 +18,7 @@ namespace BloodBank.Application.Commands.BloodStockCommands.CreateBloodStock
             var exists = await _repository.ExistsByBloodType(request.BloodType);
 
             if (exists)
-                return ResultViewModel<int>.Error("This blood type already has a registered stock.");
+                return ResultViewModel<int>.Error("This blood type already has a registered stock.");            
 
             return await next();
         }

@@ -6,16 +6,18 @@ namespace BloodBank.Application.Commands.DonationCommands.CreateDonation
 {
     public class ValidateCreateDonationCommand : IPipelineBehavior<CreateDonationCommand, ResultViewModel<int>>
     {
-        private readonly IDonorRepository _repository;
+        private readonly IDonorRepository _donorRepository;
+        private readonly IBloodStockRepository _bloodStockRepository;
 
-        public ValidateCreateDonationCommand(IDonorRepository repository)
+        public ValidateCreateDonationCommand(IDonorRepository donorRepository, IBloodStockRepository bloodStockRepository)
         {
-            _repository = repository;
+            _donorRepository = donorRepository;
+            _bloodStockRepository = bloodStockRepository;
         }
 
         public async Task<ResultViewModel<int>> Handle(CreateDonationCommand request, RequestHandlerDelegate<ResultViewModel<int>> next, CancellationToken cancellationToken)
         {
-            var donor = await _repository.GetById(request.IdDonor);
+            var donor = await _donorRepository.GetById(request.IdDonor);
 
             if (donor == null)
                 return ResultViewModel<int>.Error("Donor not found");
