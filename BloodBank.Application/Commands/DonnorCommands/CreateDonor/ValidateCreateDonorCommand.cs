@@ -19,6 +19,9 @@ namespace BloodBank.Application.Commands.DonnorCommands.CreateDonor
             if (donorEmailExists)
                 return ResultViewModel<int>.Error("This email has already been registered.");
 
+            if (request.BirthDate.Date > DateTime.Today)
+                return ResultViewModel<int>.Error("Birth date cannot be in the future.");
+
             return await next();
         }
     }

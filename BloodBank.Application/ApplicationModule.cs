@@ -28,6 +28,7 @@ namespace BloodBank.Application
         {
             services
                 .AddMediatR(config => config.RegisterServicesFromAssemblyContaining<CreateDonorCommand>());
+
             services
                 .AddTransient<IPipelineBehavior<CreateDonorCommand, ResultViewModel<int>>, ValidateCreateDonorCommand>()
                 .AddTransient<IPipelineBehavior<UpdateDonorCommand, ResultViewModel>, ValidateUpdateDonorCommand>()

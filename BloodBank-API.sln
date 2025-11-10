@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodBank.Infrastructure", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodBank.Application", "BloodBank.Application\BloodBank.Application.csproj", "{97256626-CB86-444C-9910-3C34E3817D98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodBank.Tests", "BloodBank.Tests\BloodBank.Tests.csproj", "{C6D78BFE-BBAB-490F-960E-13765212B823}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{97256626-CB86-444C-9910-3C34E3817D98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97256626-CB86-444C-9910-3C34E3817D98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97256626-CB86-444C-9910-3C34E3817D98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6D78BFE-BBAB-490F-960E-13765212B823}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6D78BFE-BBAB-490F-960E-13765212B823}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6D78BFE-BBAB-490F-960E-13765212B823}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6D78BFE-BBAB-490F-960E-13765212B823}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
