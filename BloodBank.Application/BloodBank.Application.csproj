@@ -8,12 +8,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BloodBank.Domain\BloodBank.Domain.csproj" />
-    <ProjectReference Include="..\BloodBank.Infrastructure\BloodBank.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentValidation.AspNetCore" Version="11.3.1" />
     <PackageReference Include="MediatR" Version="13.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
   </ItemGroup>
 
 </Project>

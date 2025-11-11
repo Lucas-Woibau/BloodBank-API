@@ -2,7 +2,6 @@
 using BloodBank.Application.Models;
 using BloodBank.Domain.Repositories;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 
 namespace BloodBank.Application.Commands.DonnorCommands.UpdateDonor
 {

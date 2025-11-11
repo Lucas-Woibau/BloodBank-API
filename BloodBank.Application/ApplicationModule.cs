@@ -5,6 +5,7 @@ using BloodBank.Application.Commands.DonationCommands.UpdateDonation;
 using BloodBank.Application.Commands.DonnorCommands.CreateDonor;
 using BloodBank.Application.Commands.DonnorCommands.UpdateDonor;
 using BloodBank.Application.Models;
+using BloodBank.Application.Services;
 using BloodBank.Application.Validators.DonorValidators;
 using FluentValidation;
 using FluentValidation.AspNetCore;
@@ -36,7 +37,6 @@ namespace BloodBank.Application
                 .AddTransient<IPipelineBehavior<CreateBloodStockCommand, ResultViewModel<int>>, ValidateCreateBloodStockCommand>()
                 .AddTransient<IPipelineBehavior<UpdateBloodStockCommand, ResultViewModel>, ValidateUpdateBloodStockCommand>()
 
-
                 .AddTransient<IPipelineBehavior<CreateDonationCommand, ResultViewModel<int>>, ValidateCreateDonationCommand>()
                 .AddTransient<IPipelineBehavior<UpdateDonationCommand, ResultViewModel>, ValidateUpdateDonationCommand>();
             return services;
@@ -49,6 +49,6 @@ namespace BloodBank.Application
                 .AddValidatorsFromAssemblyContaining<CreateDonorValidator>();
 
             return services;
-        }
+        }   
     }
 }

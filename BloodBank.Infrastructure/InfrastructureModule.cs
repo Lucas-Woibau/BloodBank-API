@@ -1,4 +1,6 @@
-﻿using BloodBank.Domain.Repositories;
+﻿using BloodBank.Application.Services;
+using BloodBank.Domain.Repositories;
+using BloodBank.Infrastructure.ExternalServices.ViaCep;
 using BloodBank.Infrastructure.Persistence;
 using BloodBank.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -14,6 +16,7 @@ namespace BloodBank.Infrastructure
         {
             services
                 .AddRepositories()
+                .AddExternalServices()
                 .AddData(configuration);
 
             return services;
@@ -34,6 +37,13 @@ namespace BloodBank.Infrastructure
             services.AddScoped<IDonorRepository, DonorRepository>();
             services.AddScoped<IDonationRepository, DonationRepository>();
             services.AddScoped<IBloodStockRepository, BloodStockRepository>();
+
+            return services;
+        }
+
+        private static IServiceCollection AddExternalServices(this IServiceCollection services)
+        {
+            services.AddHttpClient<IZipCodeService, ViaCepService>();
 
             return services;
         }

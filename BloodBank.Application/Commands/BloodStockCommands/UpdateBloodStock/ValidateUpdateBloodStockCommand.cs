@@ -1,8 +1,6 @@
 ﻿using BloodBank.Application.Models;
 using BloodBank.Domain.Repositories;
-using BloodBank.Infrastructure.Persistence;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
