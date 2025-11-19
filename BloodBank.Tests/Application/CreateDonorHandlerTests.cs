@@ -1,4 +1,6 @@
 ﻿using BloodBank.Application.Commands.DonnorCommands.CreateDonor;
+using BloodBank.Application.Models;
+using BloodBank.Application.Services;
 using BloodBank.Domain.Entities;
 using BloodBank.Domain.Repositories;
 using BloodBank.Tests.Helpers;
@@ -28,10 +30,22 @@ namespace BloodBank.Tests.Application
 
             var expectedEntity = command.ToEntity();
 
-            var repository = new Mock<IDonorRepository>();
-            repository.Setup(r => r.Add(It.IsAny<Donor>()));
+            var donorRepository = new Mock<IDonorRepository>();
+            donorRepository
+                .Setup(r => r.Add(It.IsAny<Donor>()));
 
-            var handler = new CreateDonorHandler(repository.Object);
+            var zipCodeRepository = new Mock<IZipCodeService>();
+            zipCodeRepository
+                 .Setup(z => z.GetZipCode(It.IsAny<string>()))
+                 .ReturnsAsync(new ZipCodeResult
+                 {
+                     PublicPlace = fakeDonor.Address.PublicPlace,
+                     City = fakeDonor.Address.City,
+                     State = fakeDonor.Address.State,
+                     Code = fakeDonor.Address.ZIPCode
+                 });
+
+            var handler = new CreateDonorHandler(donorRepository.Object, zipCodeRepository.Object);
 
             //Act
             var result = await handler.Handle(command, default);
@@ -39,7 +53,7 @@ namespace BloodBank.Tests.Application
             //Assert
             Assert.True(result.IsSuccess);
 
-            repository.Verify(r => r.Add(It.Is<Donor>(d =>
+            donorRepository.Verify(r => r.Add(It.Is<Donor>(d =>
                 d.Name == expectedEntity.Name &&
                 d.Email == expectedEntity.Email &&
                 d.BirthDate == expectedEntity.BirthDate &&

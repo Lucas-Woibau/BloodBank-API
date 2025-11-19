@@ -5,6 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>BloodBank_API</RootNamespace>
+    <UserSecretsId>e9886213-44f8-43ff-8e34-d35b18b7c535</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

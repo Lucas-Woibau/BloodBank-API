@@ -24,7 +24,7 @@ namespace BloodBank.Application.Commands.DonnorCommands.CreateDonor
                 return ResultViewModel<int>.Error("Zip Code not found.");
 
             var updatedAddress = new Address(
-                zipCodeResult.PublicPlace ?? request.Address.PublicPlace,
+                request.Address.PublicPlace,
                 zipCodeResult.City ?? request.Address.City,
                 zipCodeResult.State ?? request.Address.State,
                 zipCodeResult.Code ?? request.Address.ZIPCode
