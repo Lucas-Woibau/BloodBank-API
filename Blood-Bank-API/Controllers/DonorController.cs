@@ -2,6 +2,7 @@
 using BloodBank.Application.Commands.DonnorCommands.DeleteDonor;
 using BloodBank.Application.Commands.DonnorCommands.UpdateDonor;
 using BloodBank.Application.Queries.DonorQueries.GetAllDonors;
+using BloodBank.Application.Queries.DonorQueries.GetDonationsHistory;
 using BloodBank.Application.Queries.DonorQueries.GetDonorById;
 using BloodBank.Domain.Repositories;
 using MediatR;
@@ -72,6 +73,17 @@ namespace BloodBank_API.Controllers
                 return BadRequest(result.Message);
 
             return Ok();
+        }
+
+        [HttpGet("{id}/donations")]
+        public async Task<IActionResult> GetDonations(int id)
+        {
+            var result = await _mediator.Send(new GetDonationsHistoryQuery(id));
+
+            if (!result.IsSuccess)
+                return BadRequest(result.Message);
+
+            return Ok(result);
         }
     }
 }

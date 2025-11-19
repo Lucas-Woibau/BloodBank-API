@@ -11,5 +11,6 @@ namespace BloodBank.Domain.Repositories
         Task Delete(int id);
         Task<DateTime?> GetLastDonationDate(int donorId);
         Task<bool> DonorEmailExists(string email, int? id);
+        Task<List<Donation>> DonationsHistory(int donorId);
     }
 }

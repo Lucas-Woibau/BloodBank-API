@@ -72,5 +72,14 @@ namespace BloodBank.Infrastructure.Persistence.Repositories
                 .AnyAsync(e => e.Email == email && e.Id != (id ?? 0));
         }
 
+        public async Task<List<Donation>> DonationsHistory(int idDonor)
+        {
+            var donations = await _context.Donations
+                .Where(d => d.IdDonor == idDonor)
+                .OrderByDescending(d => d.DonationDate)
+                .ToListAsync();
+
+            return donations;
+        }
     }
 }
