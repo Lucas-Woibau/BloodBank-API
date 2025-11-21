@@ -8,11 +8,10 @@ Este projeto segue princípios de **DDD (Domain-Driven Design)**, **Clean Archit
 ## 🚀 Tecnologias Utilizadas
 - ASP.NET Core Web API  
 - Entity Framework Core  
-- PostgreSQL  
+- SQL Server 
 - MediatR  
 - FluentValidation  
 - Swagger / OpenAPI  
-- AutoMapper  
 
 ---
 
@@ -38,6 +37,15 @@ Este projeto segue princípios de **DDD (Domain-Driven Design)**, **Clean Archit
 - Registrar nova doação  
 - Listar doações por doador  
 - Ordenação por data (mais recentes primeiro)  
+
+### 🔹 BloodStock (Estoque de Sangue)
+- Registrar entrada de estoque automaticamente após uma doação  
+- Validar tipos sanguíneos (A+, A-, B+, B-, AB+, AB-, O+, O-)  
+- Evitar inconsistências com Value Objects de BloodType  
+- Consultar estoque total  
+- Consultar estoque por tipo sanguíneo  
+- Atualizações automáticas usando eventos de domínio (Domain Events)  
+- Regras de domínio para impedir contagem negativa de bolsas  
 
 ### 🔹 Address (Endereço)
 - Value Object associado ao agregado `Donor`  
