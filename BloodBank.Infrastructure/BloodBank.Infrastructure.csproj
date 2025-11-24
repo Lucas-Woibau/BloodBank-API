@@ -26,4 +26,8 @@
     <ProjectReference Include="..\BloodBank.Domain\BloodBank.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ExternalServices\ITextSharp\" />
+  </ItemGroup>
+
 </Project>
