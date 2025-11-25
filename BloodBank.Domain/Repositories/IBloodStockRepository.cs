@@ -10,6 +10,6 @@ namespace BloodBank.Domain.Repositories
         Task<int> Add(BloodStock bloodStock);
         Task Update(BloodStock bloodStock);
         Task Delete(int id);
-        Task<bool> ExistsByBloodType(BloodType bloodType);
+        Task<bool> ExistsByBloodTypeAndRhFactor(BloodType bloodType, RhFactor rhFactor);
     }
 }

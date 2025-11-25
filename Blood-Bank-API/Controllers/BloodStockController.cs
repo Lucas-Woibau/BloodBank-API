@@ -8,6 +8,7 @@ using BloodBank.Application.Queries.BloodStockQueries.GetAllBloodStocks;
 using BloodBank.Application.Queries.BloodStockQueries.GetBloodStockById;
 using BloodBank.Application.Queries.DonorQueries.GetAllDonors;
 using BloodBank.Application.Queries.DonorQueries.GetDonorById;
+using BloodBank.Application.Queries.ReportQueries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -76,6 +77,21 @@ namespace BloodBank_API.Controllers
                 return BadRequest(result.Message);
 
             return Ok();
+        }
+
+        [HttpGet("report")]
+        public async Task<IActionResult> Report()
+        {
+            var result = await _mediator.Send(new GetTotalQuantityByBloodTypeQuery());
+
+            if (!result.IsSuccess)
+                return BadRequest(result.Message);
+
+            return File(
+                result.Data,
+                "application/pdf",
+                "bloodstock-report.pdf"
+            );
         }
     }
 }

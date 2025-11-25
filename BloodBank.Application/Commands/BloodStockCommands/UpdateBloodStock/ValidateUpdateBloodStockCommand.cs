@@ -28,7 +28,7 @@ namespace BloodBank.Application.Commands.BloodStockCommands.UpdateBloodStock
             if (bloodStock.BloodType == request.BloodType)
                 return await next();
 
-            var alreadyExists = await _repository.ExistsByBloodType(request.BloodType);
+            var alreadyExists = await _repository.ExistsByBloodTypeAndRhFactor(request.BloodType, request.RhFactor);
 
             if (alreadyExists)
                 return ResultViewModel.Error("This blood type already has a registered stock.");

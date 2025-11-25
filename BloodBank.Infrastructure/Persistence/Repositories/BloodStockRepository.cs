@@ -65,10 +65,10 @@ namespace BloodBank.Infrastructure.Persistence.Repositories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> ExistsByBloodType(BloodType bloodType)
+        public async Task<bool> ExistsByBloodTypeAndRhFactor(BloodType bloodType, RhFactor rhFactor)
         {
             return await _context.BloodStock
-                .AnyAsync(b => b.BloodType == bloodType);
+                .AnyAsync(b => b.BloodType == bloodType && b.RhFactor == rhFactor);
         }  
     }
 }

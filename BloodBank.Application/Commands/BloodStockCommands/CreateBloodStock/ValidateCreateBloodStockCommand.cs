@@ -15,8 +15,8 @@ namespace BloodBank.Application.Commands.BloodStockCommands.CreateBloodStock
 
         public async Task<ResultViewModel<int>> Handle(CreateBloodStockCommand request, RequestHandlerDelegate<ResultViewModel<int>> next, CancellationToken cancellationToken)
         {
-            var exists = await _repository.ExistsByBloodType(request.BloodType);
-
+            var exists = await _repository.ExistsByBloodTypeAndRhFactor(request.BloodType, request.RhFactor);
+            
             if (exists)
                 return ResultViewModel<int>.Error("This blood type already has a registered stock.");            
 
