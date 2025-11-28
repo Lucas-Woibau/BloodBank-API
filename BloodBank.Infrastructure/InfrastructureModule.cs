@@ -1,6 +1,7 @@
 ﻿using BloodBank.Application.Services;
 using BloodBank.Domain.Repositories;
-using BloodBank.Infrastructure.ExternalServices.QuestPdf;
+using BloodBank.Infrastructure.ExternalServices.QuestPdf.BloodStockReports;
+using BloodBank.Infrastructure.ExternalServices.QuestPdf.DonationReports;
 using BloodBank.Infrastructure.ExternalServices.ViaCep;
 using BloodBank.Infrastructure.Persistence;
 using BloodBank.Infrastructure.Persistence.Repositories;
@@ -45,7 +46,8 @@ namespace BloodBank.Infrastructure
         private static IServiceCollection AddExternalServices(this IServiceCollection services)
         {
             services.AddHttpClient<IZipCodeService, ViaCepService>();
-            services.AddScoped<IReportService, ReportService>();
+            services.AddScoped<IBloodStockReportService, BloodStockReportService>();
+            services.AddScoped<IDonationReportService, DonationsHistoryReportService>();
 
             return services;
         }

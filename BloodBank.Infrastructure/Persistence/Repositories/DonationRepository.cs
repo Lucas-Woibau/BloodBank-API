@@ -55,5 +55,16 @@ namespace BloodBank.Infrastructure.Persistence.Repositories
             _context.Donations.Remove(donation);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<Donation>> GetLast30Days()
+        {
+            var fromDate = DateTime.Now.AddDays(-30);
+
+            return await _context.Donations
+                .Include(d => d.Donor)
+                .Where(d => d.DonationDate >= fromDate)
+                .ToListAsync();
+        }
+
     }
 }

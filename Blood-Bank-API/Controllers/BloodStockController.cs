@@ -1,14 +1,10 @@
 ﻿using BloodBank.Application.Commands.BloodStockCommands.CreateBloodStock;
 using BloodBank.Application.Commands.BloodStockCommands.DeleteBloodStock;
 using BloodBank.Application.Commands.BloodStockCommands.UpdateBloodStock;
-using BloodBank.Application.Commands.DonnorCommands.CreateDonor;
-using BloodBank.Application.Commands.DonnorCommands.DeleteDonor;
-using BloodBank.Application.Commands.DonnorCommands.UpdateDonor;
 using BloodBank.Application.Queries.BloodStockQueries.GetAllBloodStocks;
 using BloodBank.Application.Queries.BloodStockQueries.GetBloodStockById;
-using BloodBank.Application.Queries.DonorQueries.GetAllDonors;
-using BloodBank.Application.Queries.DonorQueries.GetDonorById;
 using BloodBank.Application.Queries.ReportQueries;
+using BloodBank.Application.Queries.ReportQueries.GetTotalQuantityByBloodType;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 

@@ -3,16 +3,16 @@ using BloodBank.Application.Services;
 using BloodBank.Domain.Repositories;
 using MediatR;
 
-namespace BloodBank.Application.Queries.ReportQueries
+namespace BloodBank.Application.Queries.ReportQueries.GetTotalQuantityByBloodType
 {
     public class GetTotalQuantityByBloodTypeQueryHandler : IRequestHandler<GetTotalQuantityByBloodTypeQuery, ResultViewModel<byte[]>>
     {
         private readonly IBloodStockRepository _repository;
-        private readonly IReportService _reportService;
+        private readonly IBloodStockReportService _reportService;
 
         public GetTotalQuantityByBloodTypeQueryHandler(
             IBloodStockRepository repository,
-            IReportService reportService)
+            IBloodStockReportService reportService)
         {
             _repository = repository;
             _reportService = reportService;

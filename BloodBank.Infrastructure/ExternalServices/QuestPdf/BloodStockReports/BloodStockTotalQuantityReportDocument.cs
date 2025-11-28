@@ -4,12 +4,12 @@ using QuestPDF.Infrastructure;
 
 public class BloodStockTotalQuantityReportDocument : IDocument
 {
-    private readonly List<BloodStock> _items;
+    private readonly List<BloodStock> _bloodStocks;
 
-    public BloodStockTotalQuantityReportDocument(List<BloodStock> items)
+    public BloodStockTotalQuantityReportDocument(List<BloodStock> bloodStocks)
     {
         QuestPDF.Settings.License = LicenseType.Community;
-        _items = items;
+        _bloodStocks = bloodStocks;
     }
 
     public void Compose(IDocumentContainer container)
@@ -70,7 +70,7 @@ public class BloodStockTotalQuantityReportDocument : IDocument
                     });
                 });
 
-                foreach (var item in _items)
+                foreach (var bloodStock in _bloodStocks)
                 {
                     table.Cell().Element(cell =>
                     {
@@ -79,7 +79,7 @@ public class BloodStockTotalQuantityReportDocument : IDocument
                             .BorderVertical(0.5f)
                             .PaddingVertical(5)
                             .AlignCenter()
-                            .Text(item.BloodType.ToString())
+                            .Text(bloodStock.BloodType.ToString())
                             .FontSize(11);
                     });
 
@@ -90,7 +90,7 @@ public class BloodStockTotalQuantityReportDocument : IDocument
                             .BorderVertical(0.5f)
                             .PaddingVertical(5)
                             .AlignCenter()
-                            .Text(item.RhFactor.ToString())
+                            .Text(bloodStock.RhFactor.ToString())
                             .FontSize(11);
                     });
 
@@ -101,7 +101,7 @@ public class BloodStockTotalQuantityReportDocument : IDocument
                              .BorderVertical(0.5f)
                             .PaddingVertical(5)
                             .AlignCenter()
-                            .Text(item.QuantityMl.ToString())
+                            .Text(bloodStock.QuantityMl.ToString())
                             .FontSize(11);
                     });
                 }

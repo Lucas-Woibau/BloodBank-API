@@ -4,6 +4,8 @@ using BloodBank.Application.Commands.DonationCommands.UpdateDonation;
 using BloodBank.Application.Commands.DonnorCommands.DeleteDonor;
 using BloodBank.Application.Queries.DonationsQueries.GetAllDonations;
 using BloodBank.Application.Queries.DonationsQueries.GetDonationById;
+using BloodBank.Application.Queries.DonorQueries.GetDonationsHistory;
+using BloodBank.Application.Queries.ReportQueries.GetDonationsHistory;
 using BloodBank.Domain.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -75,6 +77,20 @@ namespace BloodBank_API.Controllers
                 return BadRequest(result.Message);
 
             return Ok();
+        }
+
+        [HttpGet("report")]
+        public async Task<IActionResult> Report()
+        {
+            var result = await _mediator.Send(new GetMonthDonationsHistoryQuery());
+
+            if (!result.IsSuccess)
+                return BadRequest(result.Message);
+
+            return File(
+                result.Data,
+                "application/pdf",
+                "donations-report.pdf");
         }
     }
 }

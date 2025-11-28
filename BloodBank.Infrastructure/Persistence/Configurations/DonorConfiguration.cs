@@ -13,8 +13,10 @@ namespace BloodBank.Infrastructure.Persistence.Configurations
             builder.OwnsOne(d => d.Address);
 
             builder.HasMany(d => d.Donations)
-                   .WithOne()
-                   .HasForeignKey(d => d.IdDonor);
+                   .WithOne(d => d.Donor)
+                   .HasForeignKey(d => d.IdDonor)
+                   .OnDelete(DeleteBehavior.Cascade);
+
 
             builder.Property(d => d.BloodType)
                    .HasConversion<string>();

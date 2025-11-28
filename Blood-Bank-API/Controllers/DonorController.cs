@@ -4,7 +4,6 @@ using BloodBank.Application.Commands.DonnorCommands.UpdateDonor;
 using BloodBank.Application.Queries.DonorQueries.GetAllDonors;
 using BloodBank.Application.Queries.DonorQueries.GetDonationsHistory;
 using BloodBank.Application.Queries.DonorQueries.GetDonorById;
-using BloodBank.Domain.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
